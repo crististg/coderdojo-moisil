@@ -1,0 +1,175 @@
+:root{
+	--cd-orange: #ff6a00; /* primary orange */
+	--cd-black: #0b0b0b;
+	--cd-white: #ffffff;
+	--radius-lg: 18px;
+}
+
+/* Base reset and sensible defaults */
+*{box-sizing:border-box}
+html,body,#__next{height:100%}
+body{
+	margin:0;
+	font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	color:var(--cd-black);
+	background:linear-gradient(180deg, #fff 0%, #fffaf6 100%);
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+}
+
+/* Playful headings use Baloo 2 for a friendly tone */
+h1,h2,h3{font-family: 'Baloo 2', 'Inter', system-ui; margin:0}
+
+.container{
+	max-width:1100px;
+	margin:0 auto;
+	padding:2rem;
+}
+
+/* Header */
+.site-header{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	gap:1rem;
+	padding:1rem 2rem;
+}
+.brand{display:flex;align-items:center;gap:.75rem}
+.brand img{height:56px;width:56px;border-radius:12px;border:4px solid rgba(255,255,255,0.7);box-shadow:0 6px 18px rgba(11,11,11,0.12)}
+.brand .title{font-weight:800;font-size:1.25rem}
+
+.nav{display:flex;gap:1rem;align-items:center}
+.nav a{color:var(--cd-black);text-decoration:none;padding:.5rem 1rem;border-radius:12px}
+.nav .cta{background:var(--cd-orange);color:var(--cd-white);font-weight:600}
+
+/* Hero */
+.hero{
+	display:flex;
+	align-items:center;
+	gap:2rem;
+	padding:3.5rem 1rem;
+}
+.hero-left{flex:1}
+.hero-right{flex:1;display:flex;align-items:center;justify-content:center}
+.hero h1{font-size:2.8rem;color:var(--cd-black);line-height:1.02}
+.hero p{margin-top:.75rem;color:#333;font-size:1.05rem}
+.btn{display:inline-block;padding:.75rem 1.25rem;border-radius:999px;background:var(--cd-orange);color:var(--cd-white);font-weight:700;text-decoration:none}
+
+/* playful badge */
+.badge{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .65rem;border-radius:999px;background:#fff6ee;border:1px solid rgba(255,106,0,0.08);font-weight:600}
+
+/* card with subtle tilt animation */
+.play-card{background:linear-gradient(180deg,#fff,#fffdf9);padding:1.2rem;border-radius:var(--radius-lg);box-shadow:0 10px 30px rgba(11,11,11,0.08);transform:rotate(-2deg)}
+
+/* footer */
+.site-footer{padding:2rem 1rem;border-top:1px solid #f2f2f2;margin-top:3rem;text-align:center;color:#666}
+
+/* responsive */
+@media (max-width:800px){
+	.hero{flex-direction:column;padding:2rem}
+	.hero h1{font-size:2rem}
+	.brand img{height:48px;width:48px}
+}
+
+/* small utilities */
+.muted{color:#666}
+
+/* subtle floating animation for the hero right card */
+@keyframes floaty {0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+.floaty{animation:floaty 4s ease-in-out infinite}
+
+/* clickable focus styles */
+a:focus{outline:3px solid rgba(255,106,0,0.18);outline-offset:3px}
+
+/* --- Presentation hero styles (new) --- */
+.hero-landing{
+	position:relative;
+	overflow:hidden;
+	padding:8rem 0 6rem 0;
+	background:var(--cd-white);
+}
+
+/* big background word (multi-line) */
+.hero-landing .bg-text{display:none}
+
+/* center logo */
+.hero-landing .logo-center{z-index:6;display:flex;align-items:center;justify-content:center}
+.hero-landing .logo-center img{
+	width:520px; /* larger by default */
+	height:auto;
+	border-radius:18px;
+	/* remove the white plate background and border to let a transparent logo shine through */
+	background:transparent;
+	border:0;
+	box-shadow:0 40px 120px rgba(11,11,11,0.22);
+	opacity:1; /* ensure full opacity */
+}
+
+/* hero logo (inside visual plate) */
+.hero-logo{
+	position:relative;
+	display:block;
+	z-index:6;
+	width:340px;
+	height:auto;
+	background:transparent !important;
+	border:0 !important;
+}
+
+@keyframes logoPop{from{opacity:0;transform:scale(.92) rotate(6deg)}to{opacity:1;transform:scale(1) rotate(6deg)}}
+
+/* layout: three columns for the hero */
+.hero-grid{display:grid;grid-template-columns:1fr 540px 320px;gap:2rem;align-items:center}
+.hero-left{padding:1rem 0}
+.hero-left h1{font-size:5.6rem;line-height:0.86;margin:0;font-weight:900;color:var(--cd-black);font-family:'Baloo 2', 'Inter'}
+.hero-left .accent{color:var(--cd-orange);display:inline-block}
+.hero-left p{max-width:34rem}
+.hero-left .badge{margin-bottom:1rem}
+.hero-visual{display:flex;align-items:center;justify-content:center; background: transparent;}
+.visual-plate{width:420px;height:420px;border-radius:8px;/* background removed so logo sits directly on binary background */background:transparent;display:flex;align-items:center;justify-content:center;box-shadow:none;transform:none}
+.visual-plate .hero-logo{width:440px;transform:none}
+.hero-right{display:flex;flex-direction:column;gap:1rem}
+.hero-right .play-card{padding:1rem;border-radius:16px;min-width:220px;text-align:center}
+
+/* subtle vignette at bottom */
+.hero-landing::after{content:'';position:absolute;left:0;right:0;bottom:-6rem;height:160px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(11,11,11,0.04));pointer-events:none}
+
+/* decorative bubbles */
+.hero-landing .bubble{position:absolute;border-radius:999px;opacity:0.18;filter:blur(2px);z-index:2;transition:transform 260ms cubic-bezier(.16,.8,.3,1)}
+.hero-landing .bubble.b1{width:140px;height:140px;left:6%;top:20%;background:var(--cd-orange)}
+.hero-landing .bubble.b2{width:90px;height:90px;right:12%;top:14%;background:var(--cd-orange)}
+.hero-landing .bubble.b3{width:60px;height:60px;left:20%;bottom:10%;background:var(--cd-orange)}
+.hero-landing .bubble.b4{width:110px;height:110px;right:6%;bottom:18%;background:rgba(255,106,0,0.95)}
+.hero-landing .bubble.b5{width:72px;height:72px;left:44%;top:10%;background:rgba(255,90,0,0.95)}
+
+@media (max-width:900px){
+	.hero-landing{padding:4rem 0}
+	.hero-landing .bg-text{font-size:5.4rem;top:46%}
+	.visual-plate{width:260px;height:260px}
+	.visual-plate .hero-logo{width:200px}
+	.hero-landing .bubble.b1{display:none}
+}
+
+/* tiled background pattern using an inline SVG that repeats; adjust color/opacity as needed */
+.hero-landing .bg-pattern{
+	position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0.28; /* subtle overall visibility */
+	/* Inline SVG shows repeating binary digits. Reduce fill alpha to make digits more subtle. */
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='80'><text x='0' y='60' font-family='monospace' font-size='48' fill='rgba(11,11,11,0.12)'>0101010011001010100110010101001100101010</text></svg>");
+	background-repeat: repeat; background-size:480px 80px; background-position:center top;
+}
+
+/* diagonal orange stripes element (subtle) */
+.diagonal-lines-svg{
+	position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0.6; /* visible but soft */
+	width:100%;height:100%;display:block;
+	/* shift the SVG content slightly to the right so the diagonal lines are centered toward the right */
+	transform: translateX(16%);
+	transform-origin: center;
+}
+
+/* diagonal orange stripes element (subtle) */
+.hero-landing .diagonal-lines{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0.16;background-image:repeating-linear-gradient(135deg, rgba(255,106,0,0.07) 0 8px, rgba(255,80,0,0.07) 8px 16px)}
+
+/* make the big center background word slightly more subtle */
+.hero-landing .bg-text{display:none}
+
