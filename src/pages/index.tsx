@@ -12,10 +12,11 @@ export default function Home() {
         <meta name="description" content="CoderDojo Timișoara @Moisil — playful coding workshops for young people." />
       </Head>
 
-      <Header />
+      <div style={{ position: 'relative' }}>
+        <Header />
 
-      <main>
-        <Hero />
+        <main>
+          <Hero />
 
   <section className="programs-bg container" id="about">
           <div className="about-diagonals" aria-hidden />
@@ -55,7 +56,7 @@ export default function Home() {
           <p className="muted">Bring curiosity — we&apos;ll bring the support and the fun. There are a few ways to get involved:</p>
 
           <div className="join-grid" style={{ marginTop: 20 }}>
-            <div className="join-card">
+            <div className="join-card mobile-play">
               <div className="icon" aria-hidden>🎉</div>
               <div className="body">
                 <strong>Attend an event</strong>
@@ -66,7 +67,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="join-card">
+            <div className="join-card mobile-play">
               <div className="icon" aria-hidden>✉️</div>
               <div className="body">
                 <strong>Get notified</strong>
@@ -77,7 +78,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="join-card">
+            <div className="join-card mobile-play">
               <div className="icon" aria-hidden>🤝</div>
               <div className="body">
                 <strong>Become a mentor</strong>
@@ -89,7 +90,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </main>
+        </main>
+      </div>
 
       <Footer />
     </>
