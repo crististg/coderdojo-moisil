@@ -33,7 +33,15 @@ export default function Header() {
           <nav aria-label="Main navigation" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             <Link href="/about" className="nav-link" style={{ color: '#111827', textDecoration: 'none', fontSize: 14 }}>About</Link>
             <Link href="/events" className="nav-link" style={{ color: '#111827', textDecoration: 'none', fontSize: 14 }}>Events</Link>
-            <a href="#join" className="btn header-cta" style={{ fontSize: 14 }}>Join us</a>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSc_z9we6b-Rm_bYf4N8_BSKC7x2BvhwmZZ4tbq3QdrRjqK85w/viewform?usp=dialog"
+              className="btn header-cta"
+              style={{ fontSize: 14 }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join us
+            </a>
           </nav>
         </div>
       </div>
