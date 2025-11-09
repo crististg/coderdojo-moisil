@@ -52,7 +52,7 @@ export default function Home() {
 
         <section className="container join-section" id="join">
           <h2 style={{ marginTop: 28 }}>Join us</h2>
-          <p className="muted">Bring curiosity — we'll bring the support and the fun. There are a few ways to get involved:</p>
+          <p className="muted">Bring curiosity — we&apos;ll bring the support and the fun. There are a few ways to get involved:</p>
 
           <div className="join-grid" style={{ marginTop: 20 }}>
             <div className="join-card">

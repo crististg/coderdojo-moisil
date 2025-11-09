@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import React, { useEffect, useState, useRef } from 'react'
+import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -30,7 +31,7 @@ type RawCalItem = {
 }
 
 export default function EventsPage() {
-  const [events, setEvents] = useState<EventItem[] | null>(null)
+  const [, setEvents] = useState<EventItem[] | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -73,8 +74,9 @@ export default function EventsPage() {
         const data = await res.json()
         // normalize payload to EventItem[]
         if (Array.isArray(data)) {
-          const items: EventItem[] = data.slice(0, 6).map((it: RawCalItem) => {
-            const startIso = (it as any).start || (it as any).date || ''
+          const raw = data as RawCalItem[]
+          const items: EventItem[] = raw.slice(0, 6).map((it) => {
+            const startIso = it.start || it.date || ''
             const startDate = startIso ? new Date(startIso) : null
             const when = startDate ? startDate.toLocaleString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''
             return { id: it.id || it.uid || JSON.stringify(it), title: it.summary || it.title || 'Event', start: startDate ? startDate.toISOString() : '', when, location: it.location || '', desc: it.description || it.desc || '' }
@@ -83,8 +85,9 @@ export default function EventsPage() {
         } else {
           throw new Error('Invalid calendar response')
         }
-      } catch (err: any) {
-        if (mounted) setError(err?.message || 'Failed to load events')
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : String(err)
+        if (mounted) setError(msg || 'Failed to load events')
       } finally {
         if (mounted) setLoading(false)
       }
@@ -121,8 +124,8 @@ export default function EventsPage() {
                 <h1 className="about-title">Meetups, workshops &amp; Dojos</h1>
                 <p className="about-lead">Join our friendly sessions — coding, robotics and creative tech, for ages 7+. Sync with our calendar to stay up to date.</p>
                 <div style={{ marginTop: 20 }}>
-                  <a className="btn" href="/about">Learn about the club</a>
-                  <a className="btn header-cta" style={{ marginLeft: 12 }} href="/contact">Contact us</a>
+                  <Link className="btn" href="/about">Learn about the club</Link>
+                  <Link className="btn header-cta" style={{ marginLeft: 12 }} href="/contact">Contact us</Link>
                 </div>
               </div>
 
@@ -194,7 +197,7 @@ export default function EventsPage() {
 
                 <div style={{ marginTop: 18 }}>
                   <a className="btn" href="mailto:coderdojo@moisiltm.ro">Email the organizers</a>
-                  <a className="muted-link arrow-link" style={{ marginLeft: 12 }} href="/about">About the club <span className="arrow">→</span></a>
+                  <Link className="muted-link arrow-link" style={{ marginLeft: 12 }} href="/about">About the club <span className="arrow">→</span></Link>
                 </div>
               </aside>
             </div>
