@@ -113,7 +113,7 @@ export default function About() {
 
               <div className="section-gap-lg">
                 <h3 className="text-2xl">Get in touch</h3>
-                <p className="muted">Have questions or want to volunteer? Email us and we'll get back to you.</p>
+                <p className="muted">Have questions or want to volunteer? Email us and we will get back to you.</p>
 
                 <div style={{ marginTop: 12 }}>
                   <a className="btn" href="mailto:coderdojo@moisiltm.ro">Email coderdojo@moisiltm.ro</a>

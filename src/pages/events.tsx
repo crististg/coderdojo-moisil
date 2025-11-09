@@ -16,29 +16,17 @@ type EventItem = {
   desc?: string;
 }
 
-function parseIcsDate(raw: string) {
-  // ICS dates are like: 20251109 or 20251109T183000Z
-  if (!raw) return null
-  const clean = raw.trim()
-  if (/^\d{8}T\d{6}Z$/.test(clean)) {
-    // YYYYMMDDTHHMMSSZ -> YYYY-MM-DDTHH:MM:SSZ
-    const y = clean.slice(0,4)
-    const m = clean.slice(4,6)
-    const d = clean.slice(6,8)
-    const hh = clean.slice(9,11)
-    const mm = clean.slice(11,13)
-    const ss = clean.slice(13,15)
-    return new Date(`${y}-${m}-${d}T${hh}:${mm}:${ss}Z`)
-  }
-  if (/^\d{8}$/.test(clean)) {
-    const y = clean.slice(0,4)
-    const m = clean.slice(4,6)
-    const d = clean.slice(6,8)
-    return new Date(`${y}-${m}-${d}T00:00:00`)
-  }
-  // fallback
-  const d = new Date(clean)
-  return isNaN(d.getTime()) ? null : d
+// Raw calendar item shape (from API or ICS fallback). Narrow fields used by the normalizer.
+type RawCalItem = {
+  start?: string;
+  date?: string;
+  id?: string;
+  uid?: string;
+  summary?: string;
+  title?: string;
+  location?: string;
+  description?: string;
+  desc?: string;
 }
 
 export default function EventsPage() {
@@ -85,8 +73,8 @@ export default function EventsPage() {
         const data = await res.json()
         // normalize payload to EventItem[]
         if (Array.isArray(data)) {
-          const items: EventItem[] = data.slice(0, 6).map((it: any) => {
-            const startIso = it.start || it.date || ''
+          const items: EventItem[] = data.slice(0, 6).map((it: RawCalItem) => {
+            const startIso = (it as any).start || (it as any).date || ''
             const startDate = startIso ? new Date(startIso) : null
             const when = startDate ? startDate.toLocaleString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''
             return { id: it.id || it.uid || JSON.stringify(it), title: it.summary || it.title || 'Event', start: startDate ? startDate.toISOString() : '', when, location: it.location || '', desc: it.description || it.desc || '' }
@@ -172,6 +160,8 @@ export default function EventsPage() {
               <aside className="events-side">
                 <div className="events-list">
                   <h4>Upcoming</h4>
+                  {loading && <div className="muted">Loading upcoming events…</div>}
+                  {error && <div className="muted">Live calendar currently unavailable — showing the scheduled session above.</div>}
                   {/* Promoted event: next Friday 15:00–17:00 */}
                   {(() => {
                     // compute next Friday 15:00-17:00

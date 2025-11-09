@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link'
 
 export default function Header() {
   return (
@@ -17,7 +18,7 @@ export default function Header() {
             border: '1px solid rgba(11,11,11,0.06)'
           }}
         >
-          <a href="/" className="brand-link" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', color: 'inherit' }}>
+          <Link href="/" className="brand-link" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', color: 'inherit' }}>
             <img
               src="/logo.png"
               alt="CoderDojo Moisil logo"
@@ -27,11 +28,11 @@ export default function Header() {
               <div style={{ fontWeight: 800, fontSize: 15, lineHeight: 1 }}>{'CoderDojo Timișoara @Moisil'}</div>
               <div style={{ fontSize: 12, color: '#6b7280' }}>playful coding club</div>
             </div>
-          </a>
+          </Link>
 
           <nav aria-label="Main navigation" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <a href="/about" className="nav-link" style={{ color: '#111827', textDecoration: 'none', fontSize: 14 }}>About</a>
-            <a href="/events" className="nav-link" style={{ color: '#111827', textDecoration: 'none', fontSize: 14 }}>Events</a>
+            <Link href="/about" className="nav-link" style={{ color: '#111827', textDecoration: 'none', fontSize: 14 }}>About</Link>
+            <Link href="/events" className="nav-link" style={{ color: '#111827', textDecoration: 'none', fontSize: 14 }}>Events</Link>
             <a href="#join" className="btn header-cta" style={{ fontSize: 14 }}>Join us</a>
           </nav>
         </div>

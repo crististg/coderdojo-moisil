@@ -1,4 +1,5 @@
 import React, { useRef, useCallback } from "react";
+import Link from 'next/link'
 
 export default function Hero() {
   const rootRef = useRef<HTMLElement | null>(null);
@@ -59,11 +60,11 @@ export default function Hero() {
             </p>
             <p style={{ marginTop: 18 }}>
               <a className="btn" href="#join">Join a session</a>
-              <a style={{ marginLeft: 12 }} className="nav-link arrow-link" href="/events">See events <span className="arrow" aria-hidden>➜</span></a>
+              <Link style={{ marginLeft: 12 }} className="nav-link arrow-link" href="/events">See events <span className="arrow" aria-hidden>➜</span></Link>
             </p>
           </div>
 
-          <div className="hero-visual">
+            <div className="hero-visual">
             <div className="visual-plate">
               <img src="/logo.png" alt="CoderDojo Moisil logo" className="hero-logo" />
             </div>

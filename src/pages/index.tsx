@@ -2,6 +2,7 @@ import Head from "next/head";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -45,7 +46,7 @@ export default function Home() {
           </div>
 
           <div style={{ marginTop: 20 }}>
-            <a className="btn" href="/about#programs">See full programs</a>
+            <Link className="btn" href="/about#programs">See full programs</Link>
           </div>
         </section>
 
@@ -60,7 +61,7 @@ export default function Home() {
                 <strong>Attend an event</strong>
                 <p className="muted">Hands-on workshops for kids — friendly mentors and fun projects.</p>
                 <div className="btn-row">
-                  <a className="btn" href="/events">See events</a>
+                  <Link className="btn" href="/events">See events</Link>
                 </div>
               </div>
             </div>
@@ -82,7 +83,7 @@ export default function Home() {
                 <strong>Become a mentor</strong>
                 <p className="muted">Volunteer your time and skills — support learners and projects.</p>
                 <div className="btn-row">
-                  <a className="btn" href="/about#contact">Volunteer</a>
+                  <Link className="btn" href="/about#contact">Volunteer</Link>
                 </div>
               </div>
             </div>
