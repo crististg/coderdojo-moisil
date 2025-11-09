@@ -59,7 +59,7 @@ export default function Hero() {
             </p>
             <p style={{ marginTop: 18 }}>
               <a className="btn" href="#join">Join a session</a>
-              <a style={{ marginLeft: 12 }} className="nav-link arrow-link" href="#events">See events <span className="arrow" aria-hidden>➜</span></a>
+              <a style={{ marginLeft: 12 }} className="nav-link arrow-link" href="/events">See events <span className="arrow" aria-hidden>➜</span></a>
             </p>
           </div>
 

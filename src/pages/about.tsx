@@ -44,7 +44,7 @@ export default function About() {
             <h2 className="text-2xl">Programs</h2>
             <p className="muted">We run friendly, project-based workshops across different tracks — each track focuses on hands-on practice, teamwork and small showcases.</p>
 
-            <div className="grid grid-3 gap-6" style={{ marginTop: 18 }}>
+            <div className="grid grid-3 gap-6 section-gap-sm">
               <div className="play-card">
                 <strong>Algorithmics</strong>
                 <div style={{ marginTop: 8 }} className="muted">Problem solving, logical thinking, and algorithmic puzzles for learners who want to level up their computational thinking.</div>
@@ -59,7 +59,7 @@ export default function About() {
               </div>
             </div>
 
-            <div style={{ marginTop: 40 }}>
+            <div className="section-gap-lg">
               <h2 className="text-2xl">Champions & Mentors</h2>
               <p className="muted">Our team is a mix of organizing champions and volunteer mentors from schools and the local tech community. Champions help run the club and mentor sessions.</p>
 
@@ -111,13 +111,12 @@ export default function About() {
                 </div>
               </div>
 
-              <div style={{ marginTop: 36 }}>
+              <div className="section-gap-lg">
                 <h3 className="text-2xl">Get in touch</h3>
                 <p className="muted">Have questions or want to volunteer? Email us and we'll get back to you.</p>
 
                 <div style={{ marginTop: 12 }}>
                   <a className="btn" href="mailto:coderdojo@moisiltm.ro">Email coderdojo@moisiltm.ro</a>
-                  <a style={{ marginLeft: 12 }} className="muted-link arrow-link" href="mailto:coderdojo@moisiltm.ro">Contact us <span className="arrow" aria-hidden>➜</span></a>
                 </div>
               </div>
             </div>

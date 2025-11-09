@@ -104,8 +104,8 @@ a:focus{outline: none}
 	will-change: transform;
 	box-shadow: 0 8px 24px rgba(11,11,11,0.08);
 }
-.btn:hover{ transform: translateY(-4px) scale(1.02); box-shadow: 0 18px 48px rgba(11,11,11,0.12); }
-.btn:active{ transform: translateY(-1px) scale(.995); box-shadow: inset 0 6px 14px rgba(11,11,11,0.06), 0 6px 18px rgba(11,11,11,0.04); border-radius: 999px; }
+.btn:hover{ transform: scale(1.03); box-shadow: 0 18px 48px rgba(11,11,11,0.12); }
+.btn:active{ transform: scale(.99); box-shadow: inset 0 6px 14px rgba(11,11,11,0.06), 0 6px 18px rgba(11,11,11,0.04); border-radius: 999px; }
 .btn:focus{ outline: none; box-shadow: 0 0 0 6px rgba(255,106,0,0.10); border-radius: 999px; }
 
 /* Header-specific CTA: more restrained microinteraction for the floating header */
@@ -114,12 +114,12 @@ a:focus{outline: none}
 	will-change: transform;
 }
 .header-cta:hover{
-	transform: translateY(-2px) scale(1.02);
+	transform: scale(1.02);
 	box-shadow: 0 14px 42px rgba(11,11,11,0.12);
 	filter: brightness(1.03);
 }
 .header-cta:active{
-	transform: translateY(0) scale(.995);
+	transform: scale(.995);
 	box-shadow: inset 0 6px 12px rgba(11,11,11,0.06), 0 8px 24px rgba(11,11,11,0.06);
 	transition-duration: var(--cd-transition-fast);
 	border-radius: 999px;
@@ -172,11 +172,11 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, .nav-link:focus-visib
 }
 
 /* Tiny pressed button animation for tactile feedback on mobile */
-.btn:active{ transition-duration: var(--cd-transition-fast); transform: translateY(0); }
+.btn:active{ transition-duration: var(--cd-transition-fast); transform: scale(.99); }
 
 /* Decorative subtle pulse for CTA on load (only once) */
 .btn.pulse-once{ animation: pulseOnce 900ms cubic-bezier(.16,.8,.3,1); }
-@keyframes pulseOnce{ 0%{ transform: translateY(0) scale(1) } 50%{ transform: translateY(-4px) scale(1.03) } 100%{ transform: translateY(0) scale(1) } }
+@keyframes pulseOnce{ 0%{ transform: scale(1) } 50%{ transform: scale(1.03) } 100%{ transform: scale(1) } }
 
 /* Arrow link for hero: moves arrow on hover */
 .arrow-link{ text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 6px; }
@@ -229,6 +229,74 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, .nav-link:focus-visib
 }
 
 @keyframes logoPop{from{opacity:0;transform:scale(.92) rotate(6deg)}to{opacity:1;transform:scale(1) rotate(6deg)}}
+/* --- Events page visual enhancements --- */
+.events-hero {
+	padding-top: 6.5rem; /* shift hero down visually */
+	padding-bottom: 3.5rem;
+	background: linear-gradient(180deg, #fffaf7 0%, #fff7f0 40%);
+	position: relative;
+	overflow: hidden;
+}
+
+.events-hero .bg-pattern {
+	position: absolute; inset: 0; opacity: 0.03; pointer-events: none; z-index: 0;
+	background-image: radial-gradient(circle at 10% 20%, rgba(255,106,0,0.06) 0px, transparent 40%), linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+}
+
+.events-grid{ display:flex; gap:22px; align-items:flex-start }
+.events-grid .calendar-card{ flex:1; min-width:320px; max-width:760px }
+.events-grid .events-side{ width:340px }
+
+.visual-plate{ position:relative; display:flex; align-items:center; justify-content:center; background:transparent; border-radius:18px; }
+
+.photo-stack{ position:relative; width:320px; max-width:100%; aspect-ratio:3/4; border-radius:14px; overflow:visible; z-index:6 }
+.photo-stack::before{
+	content: '';
+	position: absolute; left: 50%; top: 48%; transform: translate(-50%, -50%);
+	width: 56%; height: 72%; border-radius:40%; background: radial-gradient(circle at 50% 40%, rgba(255,140,41,0.14), rgba(255,106,0,0.035) 40%, transparent 65%);
+	filter: blur(18px); z-index: 4; pointer-events: none;
+}
+.stack-photo{ position:absolute; left:50%; top:50%; transform-origin:center; transform: translate(-50%,-50%); width:90%; height:94%; border-radius:12px; object-fit:cover; box-shadow: 0 18px 40px rgba(11,11,11,0.12); transition: transform 420ms var(--cd-ease), opacity 420ms var(--cd-ease); }
+.stack-photo:nth-child(1){ z-index:12; transform: translate(-50%,-52%) rotate(-2deg) scale(1); }
+.stack-photo:nth-child(2){ z-index:10; transform: translate(-50%,-48%) rotate(4deg) scale(.98); filter: saturate(.94) brightness(.98); }
+.stack-photo:nth-child(3){ z-index:8; transform: translate(-50%,-44%) rotate(-6deg) scale(.96); opacity:.96 }
+.stack-photo:nth-child(4){ z-index:6; transform: translate(-50%,-40%) rotate(8deg) scale(.94); opacity:.92 }
+
+.photo-stack:hover .stack-photo:nth-child(1){ transform: translate(-50%,-70%) rotate(-4deg) scale(1.03); opacity:1 }
+.photo-stack:hover .stack-photo:nth-child(2){ transform: translate(-50%,-58%) rotate(6deg) scale(1.02) }
+.photo-stack:hover .stack-photo:nth-child(3){ transform: translate(-50%,-52%) rotate(-2deg) scale(1.01) }
+.photo-stack:hover .stack-photo:nth-child(4){ transform: translate(-50%,-46%) rotate(10deg) scale(1) }
+
+/* increase stack on larger screens */
+@media (max-width:980px){ .photo-stack{ width:280px } }
+@media (max-width:520px){ .photo-stack{ width:200px } .events-grid{ flex-direction:column } .events-grid .events-side{ width:100% } }
+
+/* Calendar card visual polish */
+.calendar-card{ background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.98)); border-radius:14px; padding:18px; box-shadow: 0 12px 36px rgba(11,11,11,0.06); border: 1px solid rgba(11,11,11,0.04); }
+.calendar-card-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px }
+.calendar-card h3{ margin:0; font-size:1.1rem }
+.calendar-embed iframe{ width:100%; height:420px; border:0; border-radius:10px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.6) }
+
+/* Upcoming list cards */
+.events-list{ display:flex; flex-direction:column; gap:12px }
+.event-card{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px; border-radius:12px; background: rgba(255,255,255,0.9); border:1px solid rgba(11,11,11,0.04); box-shadow: 0 6px 18px rgba(11,11,11,0.04); }
+.event-info{ flex:1; min-width:0 }
+.event-title{ font-weight:700; font-size:1rem; color:var(--cd-black); white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.event-meta{ font-size:0.85rem; color:#555; margin-top:6px }
+.event-chip{ margin-left:12px; background:transparent; border-radius:999px; color:var(--cd-orange); padding:8px 12px; font-weight:700; text-decoration:none; border:1px solid rgba(255,106,0,0.12) }
+
+/* subtle hover scale (uses global .btn behaviour for accessibility) */
+.event-card:hover{ transform: scale(1.01); box-shadow: 0 14px 40px rgba(11,11,11,0.06) }
+
+/* compact meta on small screens */
+@media (max-width:520px){ .event-meta{ display:block; font-size:0.82rem } .event-chip{ padding:8px 10px } }
+
+/* small decorative accent for the upcoming heading */
+.events-side h4{ margin:0 0 8px 0; font-size:0.95rem }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){ .stack-photo, .photo-stack:hover .stack-photo, .event-card:hover, .btn:hover{ transition: none !important; transform: none !important } }
+
 
 /* layout: three columns for the hero */
 .hero-grid{display:grid;grid-template-columns:1fr 540px 320px;gap:2rem;align-items:center}
@@ -280,6 +348,14 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, .nav-link:focus-visib
 /* subtle underline accent under the headline */
 .about-title::after{content:'';display:block;width:64px;height:6px;background:linear-gradient(90deg,var(--cd-orange),#ff8a3a);border-radius:999px;margin:18px auto 0;opacity:0.95}
 
+/* For the events hero, keep the accent pill left-aligned with the text block */
+.events-hero .about-title::after{ margin:18px 0 0 0; }
+
+/* Utility spacing helpers for consistent section gaps */
+.section-gap-sm{ margin-top:36px }
+.section-gap-lg{ margin-top:112px }
+@media (max-width:700px){ .section-gap-lg{ margin-top:56px } .section-gap-sm{ margin-top:24px } }
+
 /* gentle floating motion for blobs to add life */
 @keyframes floatSlow { 0% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-18px) translateX(8px); } 100% { transform: translateY(0) translateX(0); } }
 .about-bubble{animation: floatSlow 8s ease-in-out infinite; will-change: transform}
@@ -298,7 +374,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, .nav-link:focus-visib
 
 /* small icon accent for play-cards */
 .play-card{position:relative;padding-left:1.4rem}
-.play-card::before{content:'';position:absolute;left:14px;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:linear-gradient(180deg,var(--cd-orange),#ff8a3a);box-shadow:0 6px 18px rgba(255,106,0,0.08)}
+.play-card::before{content:'';position:absolute;left:18px;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:50%;background:linear-gradient(180deg,var(--cd-orange),#ff8a3a);box-shadow:0 6px 18px rgba(255,106,0,0.08)}
 
 /* Programs section — alternate clean elevated card style */
 #programs .grid{
@@ -348,6 +424,19 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, .nav-link:focus-visib
 /* Use transform to anchor the numeral to the card's left edge so it stays visually attached */
 /* ensure container doesn't clip decorative numerals */
 .programs-bg .container{ position:relative; z-index:3; overflow: visible }
+
+/* Prevent text from touching the small orange dot on play-cards inside program-like sections
+   Increase the gutter for `.programs-bg` variants so the decorative dot sits clearly left of the text. */
+.programs-bg .play-card{ padding-left:36px; }
+.programs-bg .play-card .content{
+	padding-left:8px; /* tighter nudge so the content sits close but not touching */
+	gap:10px;
+}
+
+@media (max-width:700px){
+	.programs-bg .play-card{ padding-left:48px; }
+	.programs-bg .play-card .content{ padding-left:8px; gap:8px; }
+}
 
 /* card spacing: hold room for an internal numeral on the left */
 #programs .play-card{ position:relative; overflow:visible; padding-left:96px; align-items:center; z-index:1; }
@@ -438,9 +527,6 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, .nav-link:focus-visib
 }
 
 /* full-width background for the programs section (subtle white -> warm-orange) */
-.programs-bg{
-	background: linear-gradient(180deg, #ffffff 0%, #fffaf6 45%, rgba(255,122,40,0.04) 100%);
-}
 .programs-bg{padding-top:3.2rem;padding-bottom:3.2rem}
 .programs-bg .container{position:relative;z-index:3}
 
@@ -452,6 +538,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, .nav-link:focus-visib
 	.about-hero::before{display:none}
 	.about-bubble{display:none}
 }
+
 .about-right{display:flex;align-items:center;justify-content:center;flex:0 0 460px}
 .about-visual{width:420px;height:420px;border-radius:14px;display:flex;align-items:center;justify-content:center}
 
@@ -467,9 +554,64 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, .nav-link:focus-visib
 .avatar{width:64px;height:64px;border-radius:999px;margin:0 auto;background:linear-gradient(135deg,var(--cd-orange),#ff8a3a);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
 .team-name{margin-top:8px;font-weight:700}
 
+/* Footer - centered, clean & roomy */
+.site-footer{
+	padding:3.2rem 0 2.4rem;
+	background: #ffffff; /* keep the footer seamless with page */
+	color: var(--cd-black);
+	border-top: 1px solid rgba(11,11,11,0.04);
+}
+.footer-inner{
+	max-width:960px;
+	margin:0 auto;
+	padding:0 1rem;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	gap:14px;
+	text-align:center;
+}
+.footer-brand{display:flex;align-items:center;gap:14px}
+.footer-logo{height:64px;border-radius:12px;box-shadow:0 10px 30px rgba(11,11,11,0.06);}
+/* explicitly disable hover microinteraction for the footer logo */
+.footer-logo, .footer-logo:hover{transition:none !important;transform:none !important;box-shadow:none !important}
+.footer-location a{display:inline-flex;align-items:center;gap:8px;color:var(--cd-black);opacity:0.9;text-decoration:none;font-size:0.98rem;max-width:720px}
+.footer-social{display:flex;gap:12px;align-items:center;justify-content:center}
+.footer-social a{display:inline-flex;width:44px;height:44px;border-radius:10px;align-items:center;justify-content:center;background:transparent;color:var(--cd-orange);text-decoration:none;border:1px solid rgba(11,11,11,0.06);transition:background 180ms var(--cd-ease), transform 180ms var(--cd-ease), box-shadow 180ms var(--cd-ease)}
+.footer-social a:hover{background:var(--cd-orange);color:#fff;transform:scale(1.06);box-shadow:0 10px 30px rgba(255,106,0,0.08)}
+.site-footer .muted{color:rgba(11,11,11,0.56);font-size:0.95rem}
+.footer-copy{margin-top:6px}
+
+@media (prefers-reduced-motion: reduce){
+	.footer-social a{transition:none !important;transform:none !important}
+}
+
+@media (max-width:800px){
+	.footer-inner{gap:12px;padding:1rem 1rem}
+	.footer-logo{height:56px}
+	.footer-social a{width:40px;height:40px}
+}
 .contact-form{display:flex;align-items:center}
 .input{padding:.7rem .9rem;border-radius:10px;border:1px solid #e6e6e6;box-shadow:inset 0 2px 6px rgba(11,11,11,0.02);transition:box-shadow var(--cd-transition) var(--cd-ease), transform var(--cd-transition) var(--cd-ease)}
 .input:focus{outline:none;box-shadow:0 8px 30px rgba(11,11,11,0.06)}
+
+/* Join section styles */
+.join-section{padding:3.2rem 0}
+.join-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:1rem}
+.join-card{display:flex;gap:12px;align-items:flex-start;padding:0.9rem;border-radius:14px;background:#fff;border:1px solid rgba(11,11,11,0.04);box-shadow:0 8px 24px rgba(11,11,11,0.06);}
+.join-card .icon{flex:0 0 44px;width:44px;height:44px;border-radius:10px;background:rgba(255,106,0,0.06);display:flex;align-items:center;justify-content:center;font-size:1.15rem}
+.join-card .body{flex:1}
+.join-card .body strong{display:block;margin-bottom:6px;font-size:1.02rem}
+.join-card .body p.muted{margin:0 0 8px;color:#6b7280;font-size:0.98rem}
+.join-card .btn-row{margin-top:6px}
+.join-card .btn{padding:.56rem 1rem;font-size:.95rem}
+
+@media (max-width:900px){
+	.join-grid{ grid-template-columns: 1fr; }
+	.join-card{ align-items:center }
+	.join-card .icon{ width:40px;height:40px;border-radius:10px }
+}
 
 @media (max-width:900px){
 	.about-hero{padding:6rem 0;min-height:auto}
@@ -537,6 +679,37 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, .nav-link:focus-visib
 	.hero-landing .bubble.b1{display:none}
 }
 
+/* Events hero photo stack: playful overlapping photos */
+.events-hero .visual-plate{width:420px;height:420px;display:flex;align-items:center;justify-content:center}
+
+/* Use a fluid box with a fixed 4:3 aspect ratio so photos always render in 4:3 frames */
+.events-hero .photo-stack{position:relative;width:100%;max-width:320px;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center}
+.events-hero .stack-photo{position:absolute;left:50%;top:50%;width:100%;height:100%;object-fit:cover;border-radius:12px;box-shadow:0 20px 50px rgba(11,11,11,0.12);border:6px solid rgba(255,255,255,0.95);transform-origin:center center;transition:transform 260ms var(--cd-ease), box-shadow 260ms var(--cd-ease), opacity 260ms var(--cd-ease)}
+/* Tight stack: top photo centered, others slightly offset and rotated so they only peek */
+.events-hero .stack-photo.p1{transform: translate(-50%, -50%) rotate(0deg); z-index:40;}
+.events-hero .stack-photo.p2{transform: translate(calc(-50% + 8px), calc(-50% + 6px)) rotate(-2deg); z-index:30; opacity:0.96}
+.events-hero .stack-photo.p3{transform: translate(calc(-50% + 12px), calc(-50% + 10px)) rotate(2deg); z-index:20; opacity:0.94}
+.events-hero .stack-photo.p4{transform: translate(calc(-50% + 16px), calc(-50% + 14px)) rotate(-4deg); z-index:10; opacity:0.92}
+
+/* On hover slightly lift the top photo and gently reveal edges of the stack */
+.events-hero .photo-stack:hover .stack-photo.p1{transform: translate(-50%, calc(-50% - 6px)) rotate(0deg) scale(1.01); box-shadow:0 28px 70px rgba(11,11,11,0.14)}
+.events-hero .photo-stack:hover .stack-photo.p2{transform: translate(calc(-50% + 6px), calc(-50% + 4px)) rotate(-1.5deg)}
+.events-hero .photo-stack:hover .stack-photo.p3{transform: translate(calc(-50% + 10px), calc(-50% + 8px)) rotate(1.5deg)}
+.events-hero .photo-stack:hover .stack-photo.p4{transform: translate(calc(-50% + 14px), calc(-50% + 12px)) rotate(-3deg)}
+
+/* Remove the default hero logo for events hero so it doesn't appear if left in markup */
+.events-hero .hero-logo{display:none !important}
+
+@media (max-width:900px){
+ 	.events-hero .visual-plate{width:300px;height:220px}
+ 	.events-hero .photo-stack{max-width:200px}
+ 	.events-hero .stack-photo{width:100%;height:100%}
+ 	.events-hero .stack-photo.p1{transform: translate(-60%, -50%) rotate(-8deg)}
+ 	.events-hero .stack-photo.p2{transform: translate(-32%, -38%) rotate(-3deg)}
+ 	.events-hero .stack-photo.p3{transform: translate(-12%, -32%) rotate(5deg)}
+ 	.events-hero .stack-photo.p4{transform: translate(8%, -18%) rotate(10deg)}
+}
+
 /* tiled background pattern using an inline SVG that repeats; adjust color/opacity as needed */
 .hero-landing .bg-pattern{
 	position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0.28; /* subtle overall visibility */
@@ -559,4 +732,198 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, .nav-link:focus-visib
 
 /* make the big center background word slightly more subtle */
 .hero-landing .bg-text{display:none}
+
+/* ------------------------------------------------------------------
+	 Events page specific styles
+	 ------------------------------------------------------------------ */
+.events-hero{ --accent-size: 10px }
+.events-hero .about-title{ font-size:2.6rem }
+.events-hero .about-lead{ font-size:1.02rem }
+
+/* Ensure text in the events hero is left-aligned while remaining vertically centered in the column */
+.events-hero .about-lead{ text-align: left; margin: 0; }
+.events-hero .about-title{ text-align: left; }
+
+/* Full events hero presentation */
+.events-hero{
+	/* Shift the hero down a bit so visual center aligns better in the viewport */
+	padding-top:11.5rem; /* increased from 8.5rem */
+	padding-bottom:6.5rem;
+	background: linear-gradient(180deg, rgba(255,250,246,1) 0%, rgba(255,255,255,1) 60%);
+	position: relative;
+	overflow: visible;
+}
+
+/* Decorative, clean enhancements for the events hero: soft radial highlights and subtle texture
+	 These are intentionally low-contrast so the hero remains clean and the photo stack stays background-free */
+.events-hero::before{
+	content: '';
+	position: absolute;
+	left: 0; right: 0; top: 0;
+	height: 52%;
+	pointer-events: none;
+	z-index: 0;
+	background-image:
+		radial-gradient(circle at 18% 28%, rgba(255,122,40,0.06), transparent 20%),
+		radial-gradient(circle at 82% 68%, rgba(255,106,0,0.03), transparent 18%);
+}
+
+.events-hero::after{
+	/* very subtle diagonal stripe texture to add dimension without clutter */
+	content: '';
+	position: absolute;
+	right: -10%;
+	top: 8%;
+	width: 420px;
+	height: 420px;
+	background-image: repeating-linear-gradient(135deg, rgba(255,106,0,0.02) 0 8px, rgba(255,106,0,0.00) 8px 16px);
+	transform: rotate(6deg);
+	opacity: 0.12;
+	pointer-events: none;
+	z-index: 0;
+}
+
+.events-hero .hero-grid{ /* make the hero a two-column layout for events */
+	display: grid;
+	grid-template-columns: 1fr 360px;
+	gap: 28px;
+	align-items: center;
+}
+
+.events-hero .hero-left{ padding: 1rem 0; text-align: left; display:flex; flex-direction:column; justify-content:center; align-items:flex-start }
+.events-hero .hero-left{ max-width:46rem }
+.events-hero .badge{ background:#fff7ef; border:1px solid rgba(255,106,0,0.06); }
+.events-hero .about-title{ font-size:3.2rem; line-height:1.02; margin-top:6px; color:var(--cd-black) }
+.events-hero .about-lead{ color:#444; max-width:40rem; margin-top:10px }
+
+.events-hero .hero-left .btn{ margin-top:18px }
+.events-hero .hero-left .btn + .header-cta{ margin-left:12px }
+
+/* Visual plate adjustments for the events hero: card-like surface behind the photo stack */
+.events-hero .visual-plate{
+	/* Keep the plate visually neutral but add a faint rounded outline to anchor the stack */
+	width:380px;
+	height:auto;
+	padding:8px;
+	border-radius:10px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	background: transparent;
+	box-shadow: none;
+	border: none;
+	position: relative;
+}
+
+.events-hero .visual-plate::after{
+	/* tiny soft blob behind the stack for subtle depth (very low opacity) */
+	content: '';
+	position: absolute;
+	left: 50%; top: 52%; transform: translate(-50%, -50%);
+	width: 72%; height: 56%; border-radius: 18px; z-index:0; pointer-events:none;
+	background: radial-gradient(closest-side, rgba(255,122,40,0.03), transparent 60%);
+}
+
+/* small orange radius behind the photo stack — low contrast and intentionally small */
+.events-hero .photo-stack::before{
+	content: '';
+	position: absolute;
+	left: 50%; top: 50%; transform: translate(-50%, -48%);
+	width: 56%;
+	height: 56%;
+	border-radius: 999px;
+	background: radial-gradient(circle at 50% 40%, rgba(255,122,40,0.14), rgba(255,106,0,0.06) 40%, transparent 70%);
+	filter: blur(8px);
+	z-index: 1; /* behind images which have higher z-index */
+	pointer-events: none;
+}
+
+@media (max-width:900px){
+	.events-hero .photo-stack::before{ width:64%; height:64%; filter: blur(6px); }
+}
+
+.events-hero .photo-stack{ position: relative; z-index: 2 }
+.events-hero .hero-left .btn-row{ justify-content: flex-start }
+
+/* CTA row inside hero-left: align and space nicely */
+.events-hero .hero-left .btn-row{ margin-top:18px; display:flex; gap:12px }
+
+@media (max-width:1000px){
+	/* Keep the hero lower on smaller screens but less extreme */
+	.events-hero{ padding-top:9.5rem; padding-bottom:5rem }
+	.events-hero .hero-grid{ grid-template-columns: 1fr; gap: 18px }
+	.events-hero .visual-plate{ width:100%; padding:12px }
+}
+
+.events-grid{ display:grid; grid-template-columns: 1fr 360px; gap:24px; align-items:start; margin-top:2rem }
+.calendar-card{ background: linear-gradient(180deg,#fff,#fff); padding:16px; border-radius:14px; box-shadow:0 20px 60px rgba(11,11,11,0.04); border:1px solid rgba(11,11,11,0.04) }
+.calendar-card-head{ display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px }
+.calendar-embed{ border-radius:10px; overflow:hidden; border:1px solid rgba(11,11,11,0.03) }
+.calendar-embed iframe{ display:block; width:100%; height:520px; border:0 }
+
+.events-side{ display:flex; flex-direction:column; gap:16px }
+
+/* Upcoming list: cleaner card surface with subtle shadow and spacing */
+.events-list{
+	background: linear-gradient(180deg,#ffffff,#fffaf7);
+	padding:16px;
+	border-radius:14px;
+	border:1px solid rgba(11,11,11,0.04);
+	box-shadow: 0 8px 30px rgba(11,11,11,0.04);
+	min-width:240px;
+}
+
+/* Event row: elevated white surface, two-column layout (info + action) */
+.event-card{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	gap:12px;
+	padding:10px 12px; /* slightly tighter */
+	border-radius:10px;
+	background: linear-gradient(180deg,#ffffff,#fff);
+	border: 1px solid rgba(11,11,11,0.04);
+	transition: transform 180ms var(--cd-ease), box-shadow 180ms var(--cd-ease);
+}
+.event-card + .event-card{ margin-top:8px }
+.event-card:hover{ transform: scale(1.01); box-shadow: 0 18px 48px rgba(11,11,11,0.06) }
+
+/* Title and meta (more compact) */
+.event-card strong{ display:block; font-size:0.98rem; color:var(--cd-black); margin-bottom:4px }
+.event-card .muted{ font-size:0.92rem; color:#6b7280; line-height:1.15 }
+.event-card .muted:first-of-type{ font-weight:600; color:#374151; /* time */ }
+.event-card .muted:nth-of-type(2){ font-size:0.86rem; color:#9ca3af; margin-top:4px } /* location */
+
+/* Action pill (Add) - visually button-like, accessible */
+.event-chip{ display:inline-flex; align-items:center; justify-content:center; min-width:56px; height:32px; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,106,0,0.10); background:transparent; color:var(--cd-orange); font-weight:700; font-size:0.86rem; text-decoration:none }
+.event-chip:hover, .event-chip:focus{ background: rgba(255,106,0,0.04); box-shadow:none; outline: none }
+.event-chip:active{ transform: none }
+
+/* Make the section heading more prominent */
+.events-list h3{ margin:0 0 8px 0; font-size:1.12rem; color:var(--cd-black); letter-spacing:-0.2px }
+
+/* make the notice text in the events-list lighter and less dominant */
+.events-list .muted{ font-size:0.86rem; color:#6b7280; margin-bottom:10px }
+
+/* Compact info layout inside event card */
+.event-info{ display:flex; flex-direction:column; gap:6px; min-width:0 }
+.event-title{ font-weight:700 }
+.event-title strong{ display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.event-meta{ font-size:0.86rem; color:#6b7280 }
+
+/* ensure the action pill doesn't push the title to wrap (use min-width:0 on flex children) */
+.event-card .event-info{ flex:1; min-width:0 }
+.event-card .event-chip{ margin-left:12px; flex:0 0 auto }
+
+.muted-link.arrow-link{ display:inline-flex; align-items:center }
+
+@media (max-width:1000px){
+	.events-grid{ grid-template-columns: 1fr; }
+	.calendar-embed iframe{ height:420px }
+	.hero-left h1{ font-size:2.6rem }
+}
+
+@media (prefers-reduced-motion: reduce){
+	.event-card{ transition: none }
+}
 

@@ -31,7 +31,7 @@ export default function Header() {
 
           <nav aria-label="Main navigation" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             <a href="/about" className="nav-link" style={{ color: '#111827', textDecoration: 'none', fontSize: 14 }}>About</a>
-            <a href="#events" className="nav-link" style={{ color: '#111827', textDecoration: 'none', fontSize: 14 }}>Events</a>
+            <a href="/events" className="nav-link" style={{ color: '#111827', textDecoration: 'none', fontSize: 14 }}>Events</a>
             <a href="#join" className="btn header-cta" style={{ fontSize: 14 }}>Join us</a>
           </nav>
         </div>

@@ -16,20 +16,77 @@ export default function Home() {
       <main>
         <Hero />
 
-        <section className="container" id="about">
+  <section className="programs-bg container" id="about">
+          <div className="about-diagonals" aria-hidden />
           <h2 style={{ marginTop: 18 }}>What we do</h2>
           <p className="muted">Small, project-based sessions where kids learn to code, create games, and build small hardware projects with friendly mentors.</p>
 
-          <div style={{ marginTop: 18, display: 'grid', gap: 12 }}>
-            <div className="play-card">🏗️ Build projects with mentors</div>
-            <div className="play-card">🎨 Experiment with creative tech</div>
-            <div className="play-card">🤝 Collaborate and present</div>
+          <div style={{ marginTop: 18, display: 'grid', gap: 16 }}>
+            <div className="play-card">
+              <div className="content">
+                <strong>Build projects with mentors</strong>
+                <div className="muted">Hands-on support to turn ideas into working projects — from concept to demo.</div>
+              </div>
+            </div>
+
+            <div className="play-card">
+              <div className="content">
+                <strong>Experiment with creative tech</strong>
+                <div className="muted">Explore web, animation, sound and simple circuits in playful mini-projects.</div>
+              </div>
+            </div>
+
+            <div className="play-card">
+              <div className="content">
+                <strong>Collaborate and present</strong>
+                <div className="muted">Work in small teams, give short demos and celebrate learning with classmates.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ marginTop: 20 }}>
+            <a className="btn" href="/about#programs">See full programs</a>
           </div>
         </section>
 
-        <section className="container" id="join">
+        <section className="container join-section" id="join">
           <h2 style={{ marginTop: 28 }}>Join us</h2>
-          <p className="muted">Bring curiosity. We provide the support and the fun. Sign up on our events page (coming soon) or email the club to get notified.</p>
+          <p className="muted">Bring curiosity — we'll bring the support and the fun. There are a few ways to get involved:</p>
+
+          <div className="join-grid" style={{ marginTop: 20 }}>
+            <div className="join-card">
+              <div className="icon" aria-hidden>🎉</div>
+              <div className="body">
+                <strong>Attend an event</strong>
+                <p className="muted">Hands-on workshops for kids — friendly mentors and fun projects.</p>
+                <div className="btn-row">
+                  <a className="btn" href="/events">See events</a>
+                </div>
+              </div>
+            </div>
+
+            <div className="join-card">
+              <div className="icon" aria-hidden>✉️</div>
+              <div className="body">
+                <strong>Get notified</strong>
+                <p className="muted">Sign up to receive event announcements and sign-ups.</p>
+                <div className="btn-row">
+                  <a className="btn" href="mailto:info@coderdojo-moisil.ro">Email us</a>
+                </div>
+              </div>
+            </div>
+
+            <div className="join-card">
+              <div className="icon" aria-hidden>🤝</div>
+              <div className="body">
+                <strong>Become a mentor</strong>
+                <p className="muted">Volunteer your time and skills — support learners and projects.</p>
+                <div className="btn-row">
+                  <a className="btn" href="/about#contact">Volunteer</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
 
