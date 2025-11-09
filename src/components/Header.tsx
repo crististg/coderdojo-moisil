@@ -20,7 +20,7 @@ export default function Header() {
         >
           <Link href="/" className="brand-link" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', color: 'inherit' }}>
             <img
-              src="/logo.png"
+              src="https://github.com/crististg/coderdojo-moisil/blob/main/public/logo.png?raw=true"
               alt="CoderDojo Moisil logo"
               style={{ height: 56, width: 56, borderRadius: 12, background: 'transparent', objectFit: 'cover' }}
             />

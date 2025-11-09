@@ -36,7 +36,12 @@ export default function EventsPage() {
   const [error, setError] = useState<string | null>(null)
 
   // Photo stack state & shuffle controls
-  const [photos, setPhotos] = useState<string[]>(['/1.png', '/2.png', '/3.png', '/4.png'])
+  const [photos, setPhotos] = useState<string[]>([
+    'https://github.com/crististg/coderdojo-moisil/blob/main/public/1.png?raw=true',
+    'https://github.com/crististg/coderdojo-moisil/blob/main/public/2.png?raw=true',
+    'https://github.com/crististg/coderdojo-moisil/blob/main/public/3.png?raw=true',
+    'https://github.com/crististg/coderdojo-moisil/blob/main/public/4.png?raw=true',
+  ])
   const photoStackRef = useRef<HTMLDivElement | null>(null)
   const shuffleRef = useRef<ReturnType<typeof setInterval> | null>(null)
 

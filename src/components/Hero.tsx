@@ -66,7 +66,7 @@ export default function Hero() {
 
             <div className="hero-visual">
             <div className="visual-plate">
-              <img src="/logo.png" alt="CoderDojo Moisil logo" className="hero-logo" />
+              <img src="https://github.com/crististg/coderdojo-moisil/blob/main/public/logo.png?raw=true" alt="CoderDojo Moisil logo" className="hero-logo" />
             </div>
           </div>
 
