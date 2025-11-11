@@ -1180,3 +1180,40 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, .nav-link:focus-visib
 	.join-card.mobile-play .btn{ width:100%; max-width:520px; }
 }
 
+/* Late-file overrides: make the hero logo much larger on mobile viewports.
+   These are intentionally specific and use !important so they override
+   earlier, smaller values and give the front page hero a bolder presence
+   on phones and small tablets. Adjust if you want it even larger. */
+@media (max-width:900px) {
+	.hero-landing .visual-plate,
+	.visual-plate {
+		/* make the plate large but never wider than the viewport */
+		width: min(520px, 92vw) !important;
+		height: auto !important;
+		margin: 0 auto;
+	}
+	.hero-landing .visual-plate .hero-logo,
+	.visual-plate .hero-logo {
+		/* logo scales with viewport up to a comfortable maximum */
+		width: min(480px, 88vw) !important;
+		max-width: 96% !important;
+		height: auto !important;
+	}
+}
+
+@media (max-width:520px) {
+	.hero-landing .visual-plate,
+	.visual-plate {
+		/* smaller phones: still large, but constrained to viewport */
+		width: min(420px, 94vw) !important;
+		height: auto !important;
+		margin: 0 auto;
+	}
+	.hero-landing .visual-plate .hero-logo,
+	.visual-plate .hero-logo {
+		width: min(380px, 90vw) !important;
+		max-width: 98% !important;
+		height: auto !important;
+	}
+}
+

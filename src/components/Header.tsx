@@ -45,7 +45,7 @@ export default function Header() {
   // Floating, centered header bar that sits on top of the hero.
   // It will be positioned absolutely inside the page wrapper so it visually
   // overlays the hero but still scrolls away with the page.
-  <header style={{ position: 'absolute', left: 0, right: 0, top: 24, zIndex: 60, pointerEvents: 'auto' }}>
+  <header style={{ position: 'fixed', left: 0, right: 0, top: 24, zIndex: 60, pointerEvents: 'auto' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 16px' }}>
         <div
           style={{
