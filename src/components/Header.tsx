@@ -61,7 +61,7 @@ export default function Header() {
         >
           <Link href="/" className="brand-link" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', color: 'inherit' }}>
             <img
-              src="https://github.com/crististg/coderdojo-moisil/blob/main/public/logo.png?raw=true"
+              src="/logo.png"
               alt="CoderDojo Moisil logo"
               style={{ height: 56, width: 56, borderRadius: 12, background: 'transparent', objectFit: 'cover' }}
             />
@@ -75,6 +75,7 @@ export default function Header() {
           <nav aria-label="Main navigation" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             <Link href="/about" className="nav-link" style={{ color: '#111827', textDecoration: 'none', fontSize: 14 }}>About</Link>
             <Link href="/events" className="nav-link" style={{ color: '#111827', textDecoration: 'none', fontSize: 14 }}>Events</Link>
+            <Link href="/login" className="nav-link" style={{ color: '#111827', textDecoration: 'none', fontSize: 14 }}>Login</Link>
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSc_z9we6b-Rm_bYf4N8_BSKC7x2BvhwmZZ4tbq3QdrRjqK85w/viewform?usp=dialog"
               className="btn header-cta"
@@ -110,6 +111,7 @@ export default function Header() {
           <nav aria-label="Mobile navigation" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             <Link href="/about" className="mobile-link" onClick={() => setOpen(false)}>About</Link>
             <Link href="/events" className="mobile-link" onClick={() => setOpen(false)}>Events</Link>
+              <Link href="/login" className="mobile-link" onClick={() => setOpen(false)}>Login</Link>
 
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSc_z9we6b-Rm_bYf4N8_BSKC7x2BvhwmZZ4tbq3QdrRjqK85w/viewform?usp=dialog"

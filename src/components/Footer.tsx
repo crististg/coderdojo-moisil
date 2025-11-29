@@ -5,7 +5,7 @@ export default function Footer() {
   <footer className="site-footer" role="contentinfo">
       <div className="footer-inner">
         <div className="footer-brand">
-          <img src="https://github.com/crististg/coderdojo-moisil/blob/main/public/logo.png?raw=true" alt="CoderDojo Moisil logo" className="footer-logo" />
+          <img src="/logo.png" alt="CoderDojo Moisil logo" className="footer-logo" />
         </div>
 
   <div className="footer-social">

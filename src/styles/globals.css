@@ -8,6 +8,78 @@
 	--radius-lg: 18px;
 }
 
+/* ------------------------------------------------------------------
+	 Form visual polish for login/register cards (late-file overrides)
+	 Scoped to .login-card and .register-card so desktop styles elsewhere
+	 aren't changed. These rules enhance inputs, labels, primary button
+	 and the card surface to match the site's rounded tactile look.
+	 ------------------------------------------------------------------ */
+.login-card, .register-card {
+	border-radius: 18px; /* slightly larger radius like site cards */
+	overflow: hidden;
+}
+
+.login-card .input, .register-card .input,
+.login-card input.input, .register-card input.input {
+	padding: 12px 14px;
+	border-radius: 10px;
+	border: 1px solid rgba(11,11,11,0.06);
+	background: #ffffff;
+	box-shadow: inset 0 6px 18px rgba(11,11,11,0.03);
+	transition: box-shadow 220ms var(--cd-ease), border-color 180ms var(--cd-ease), transform 180ms var(--cd-ease);
+	height: 44px;
+}
+
+.login-card label, .register-card label {
+	display:block;
+	margin-bottom:8px;
+	color: #374151; /* slightly darker label color */
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.login-card .input:focus, .register-card .input:focus,
+.login-card input.input:focus, .register-card input.input:focus {
+	outline: none;
+	border-color: rgba(255,106,0,0.9);
+	box-shadow: 0 6px 28px rgba(255,106,0,0.08);
+	transform: translateY(-1px);
+}
+
+/* Autofill styling: keep the same background and remove browser-yellow glare */
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
+	-webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+	box-shadow: 0 0 0px 1000px #fff inset !important;
+	-webkit-text-fill-color: #111827 !important;
+}
+
+/* Primary CTA inside card (prominent rounded orange) */
+.login-card .btn, .register-card .btn {
+	background: var(--cd-orange);
+	color: var(--cd-white);
+	border-radius: 999px;
+	padding: 12px 18px;
+	font-weight: 800;
+	box-shadow: 0 12px 36px rgba(255,106,0,0.14);
+	border: 1px solid rgba(11,11,11,0.04);
+}
+.login-card .btn:hover, .register-card .btn:hover { transform: translateY(-2px); box-shadow: 0 18px 48px rgba(255,106,0,0.16); }
+
+/* Tweak small helper text inside cards */
+.login-card small, .register-card small { color: #6b7280; }
+
+/* Make sure the logo column doesn't shrink on small cards */
+.login-card .login-logo-wrap, .register-card .register-logo-wrap { flex-shrink: 0; }
+
+@media (max-width:900px){
+	/* on small screens the card stacks; reduce logo width so the form remains prominent */
+	.login-card, .register-card { flex-direction: column; }
+	.login-card .login-logo-wrap, .register-card .register-logo-wrap { flex: 0 0 auto; width: 100%; padding: 20px; }
+	.login-card .login-logo-wrap img, .register-card .register-logo-wrap img { max-width: 260px; }
+	.login-card .btn, .register-card .btn { width: 100%; }
+}
+
+
 /* Base reset and sensible defaults */
 *{box-sizing:border-box}
 html,body,#__next{height:100%}
