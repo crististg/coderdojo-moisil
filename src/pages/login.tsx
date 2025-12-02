@@ -1,3 +1,4 @@
+// Login page — small login UI for organizers. Hand-tweaked copy and layout.
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
@@ -24,10 +25,10 @@ export default function LoginPage() {
               {/* Right: login form inside the same card */}
               <div style={{ flex: 1, padding: '36px 32px' }}>
                 <h2 style={{ margin: 0, fontSize: '1.75rem', fontWeight: 800 }}>Welcome back</h2>
-                <p style={{ marginTop: 8, color: '#6b7280' }}>Organizers and administrators — sign in to continue.</p>
+                <p style={{ marginTop: 8, color: '#6b7280' }}>If you're an organizer, sign in here to manage events and sessions.</p>
 
                 <form onSubmit={(e) => e.preventDefault()} style={{ marginTop: 18 }}>
-                  <label style={{ display: 'block', fontSize: 13, marginBottom: 8 }}>Email</label>
+                  <label style={{ display: 'block', fontSize: 13, marginBottom: 8 }}>Email address</label>
                   <input className="input" type="email" placeholder="you@example.com" style={{ width: '100%', marginBottom: 12 }} />
 
                   <label style={{ display: 'block', fontSize: 13, marginBottom: 8 }}>Password</label>

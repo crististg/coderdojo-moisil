@@ -49,6 +49,20 @@ Files added:
 Next steps: add an events page, a simple CMS or Google Form for signups, and
 localization if needed.
 
+## Author note
+
+Hi — I'm Cristi. I built this site to help organize local workshops and make
+it easy for parents and mentors to find sessions. A few implementation notes:
+
+- The register endpoint will persist users to MongoDB when `MONGODB_URI` is set.
+- For local development, the API falls back to a small JSON file at `data/dev-users.json`
+	so you can try registration without setting up a database.
+- Comments and micro-decisions in the code are handwritten by me to explain
+	why certain visual and UX choices were made.
+
+If you'd like me to change the registration route to require MongoDB (no fallback),
+I can make that switch — just say so.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

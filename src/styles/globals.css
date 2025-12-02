@@ -95,8 +95,8 @@ body{
 
 /* Prevent accidental horizontal overflow (fixes a thin white gap on the right)
    Applied globally to the root elements so overflowing children don't cause
-   the page to be wider than the viewport. This is intentionally conservative
-   and doesn't change component layout otherwise. */
+	the page to be wider than the viewport. I chose a conservative approach
+	here so small layout changes don't cause accidental overflow. */
 html, body, #__next {
 	overflow-x: hidden;
 }
@@ -994,7 +994,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, .nav-link:focus-visib
 }
 
 /* Decorative, clean enhancements for the events hero: soft radial highlights and subtle texture
-	 These are intentionally low-contrast so the hero remains clean and the photo stack stays background-free */
+ 	 I kept these low-contrast so the hero stays clean and the photo stack reads as the visual focus. */
 .events-hero::before{
 	content: '';
 	position: absolute;

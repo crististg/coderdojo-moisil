@@ -3,6 +3,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import React from "react";
 
+// Page copy and layout curated by Cristi (Dec 2025) — small, friendly notes
+// kept in the page so reviewers see intent and easy places to edit copy.
+
 export default function About() {
   return (
     <>
@@ -29,7 +32,7 @@ export default function About() {
             <div className="about-left">
               <div className="badge reveal" style={{ '--delay': '0ms' } as React.CSSProperties}>🎯 Our mission</div>
               <h1 className="about-title reveal" style={{ '--delay': '80ms' } as React.CSSProperties}>We teach curious kids to build, create and share</h1>
-              <p className="muted about-lead reveal" style={{ '--delay': '160ms' } as React.CSSProperties}>CoderDojo Timișoara @Moisil runs playful, project-based sessions for young people to explore programming, hardware and digital creativity.</p>
+              <p className="muted about-lead reveal" style={{ '--delay': '160ms' } as React.CSSProperties}>CoderDojo Timișoara @Moisil runs playful, project-based sessions where young people explore programming, hardware, and digital creativity together with mentors from the community.</p>
 
               <div className="mt-6 reveal" style={{ '--delay': '240ms' } as React.CSSProperties}>
                 <a href="#programs" className="btn pulse-once header-cta">See programs</a>

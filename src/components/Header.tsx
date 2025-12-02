@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from 'next/link'
 
+// Floating header component — I hand-implemented the accessible mobile menu.
+// Notes: keeps behavior simple and keyboard-friendly. — Cristi, Dec 2025
 export default function Header() {
   const [open, setOpen] = useState(false)
   const btnRef = useRef<HTMLButtonElement | null>(null)

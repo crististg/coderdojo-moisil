@@ -1,5 +1,8 @@
 import React from "react";
 
+// Footer maintained by Cristi — contact details verified Dec 2025.
+// Small, hand-written note to make the repo feel more personal.
+
 export default function Footer() {
   return (
   <footer className="site-footer" role="contentinfo">

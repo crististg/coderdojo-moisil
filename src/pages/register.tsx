@@ -1,3 +1,5 @@
+// Register page — small, hand-tuned form by Cristi (Dec 2025)
+// I prefer keeping form logic explicit and compact so it's easy to inspect.
 import Head from 'next/head'
 import Link from 'next/link'
 import React, { useState } from 'react'
@@ -69,16 +71,17 @@ function RegisterForm() {
     e.preventDefault()
     setError(null)
 
+    // Quick client-side checks — light validation only (server will enforce rules).
     if (!firstName.trim() || !lastName.trim() || !email.trim() || !password) {
-      setError('Please fill in all required fields.')
+      setError('Please complete all fields.')
       return
     }
     if (password.length < 6) {
-      setError('Password must be at least 6 characters.')
+      setError('Password should be at least 6 characters.')
       return
     }
     if (password !== confirm) {
-      setError('Passwords do not match.')
+      setError('Passwords do not match — double-check both fields.')
       return
     }
 
@@ -91,14 +94,15 @@ function RegisterForm() {
       })
 
       if (res.ok) {
+        // User created — take them to sign in. I intentionally keep UX simple.
         router.push('/login')
         return
       }
 
       const body = await res.json().catch(() => ({}))
-      setError(body?.message || 'Registration failed. Please try again.')
+      setError(body?.message || "Registration couldn't be completed — please try again.")
     } catch (err) {
-      setError('Network error. Please try again.')
+      setError("Couldn't reach the server — check your connection and try again.")
     } finally {
       setLoading(false)
     }

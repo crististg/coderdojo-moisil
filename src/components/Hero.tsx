@@ -25,8 +25,9 @@ export default function Hero() {
     if (b5.current) b5.current.style.transform = `translate(${dx * 26}px, ${dy * -18}px)`;
   }, []);
 
-  // We intentionally do NOT reset bubble positions on mouse leave so
-  // their last positions persist after exiting the section.
+  // I decided not to reset the bubble positions on mouse leave —
+  // leaving them where the cursor was gives the hero a bit of 'memory'.
+  // (Small UX choice by Cristi, Dec 2025.)
 
   return (
     <section

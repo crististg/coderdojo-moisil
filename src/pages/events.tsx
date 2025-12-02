@@ -11,13 +11,12 @@ const IFRAME_SRC = `https://calendar.google.com/calendar/embed?src=${CALENDAR_SR
 type EventItem = {
   id: string;
   title: string;
-  start: string; // ISO
-  when: string; // human-friendly
+  start: string;
+  when: string;
   location?: string;
   desc?: string;
 }
 
-// Raw calendar item shape (from API or ICS fallback). Narrow fields used by the normalizer.
 type RawCalItem = {
   start?: string;
   date?: string;
@@ -136,8 +135,10 @@ export default function EventsPage() {
 
               <div className="hero-visual">
                 <div className="visual-plate">
-                  {/* PhotoStack component inlined below */}
-                  <div className="photo-stack" ref={photoStackRef} onMouseEnter={startShuffle} onMouseLeave={stopShuffle} aria-hidden>
+          {/* PhotoStack: local demo photos rotated while hovered.
+            Kept intentionally simple so maintainers can replace images
+            in /public/ with event photos when needed. */}
+          <div className="photo-stack" ref={photoStackRef} onMouseEnter={startShuffle} onMouseLeave={stopShuffle} aria-hidden>
                     {photos.map((src, i) => (
                       // decorative photos — loaded from /1.png .. /4.png in public/
                       // eslint-disable-next-line @next/next/no-img-element
@@ -169,7 +170,7 @@ export default function EventsPage() {
                 <div className="events-list">
                   <h4>Upcoming</h4>
                   {loading && <div className="muted">Loading upcoming events…</div>}
-                  {error && <div className="muted">Live calendar currently unavailable — showing the scheduled session above.</div>}
+                  {error && <div className="muted">Our live calendar is temporarily unavailable — showing the usual scheduled session above.</div>}
                   {/* Promoted event: next Friday 15:00–17:00 */}
                   {(() => {
                     // compute next Friday 15:00-17:00
